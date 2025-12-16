@@ -68,13 +68,13 @@ const CommentEditor = ({ isOpen, setIsOpen }: CommentEditorProps) => {
         <input
           placeholder="Title"
           type="text"
-          className="w-full h-[40px] border text-sm border-white/10 rounded-md p-2 focus:outline-none"
+          className="w-full h-[40px] border text-sm border-white/10 rounded-md p-2 focus:outline-none text-white"
           value={title}
           onChange={onTitleChange}
         />
         <textarea
           placeholder="Comment"
-          className="w-full h-[100px] border text-sm border-white/10 rounded-md p-2 focus:outline-none"
+          className="w-full h-[100px] border text-sm border-white/10 rounded-md p-2 focus:outline-none text-white"
           value={content}
           onChange={onContentChange}
         />

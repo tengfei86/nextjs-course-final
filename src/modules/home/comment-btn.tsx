@@ -9,7 +9,7 @@ const CommentBtn = () => {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="w-full h-[32px] flex justify-center items-center rounded-lg bg-white rounded-ld p-4 text-sm text-black font-bold cursor-pointer"
+        className="w-full h-[32px] flex justify-center items-center rounded-lg bg-white rounded-ld p-4 text-sm text-black font-bold cursor-pointer border border-gray-300"
       >
         What's on your mind?
       </button>

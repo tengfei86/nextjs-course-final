@@ -38,10 +38,18 @@ export const getPostList = async (page: string) => {
 
 
 
-export const addPost = async (data: { title: string; content: string }) => {
+export const addPost = async (data: { 
+  title: string; 
+  content: string; 
+  userId: string;
+}) => {
   const { data: post, error } = await supabase
     .from('posts')
-    .insert([{ title: data.title, content: data.content }])
+    .insert([{ 
+      title: data.title, 
+      content: data.content,
+      user_id: data.userId,
+    }])
     .select('*')
     .single();
 

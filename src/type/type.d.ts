@@ -3,5 +3,5 @@ interface Post {
   title: string;
   content: string;
   createdAt: number;
-  email?: string;
+  user_id: number;
 }

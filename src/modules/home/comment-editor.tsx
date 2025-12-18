@@ -10,6 +10,7 @@ import {
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { useAuth } from "@/hooks/use-auth";
 
 interface CommentEditorProps {
   isOpen: boolean;
@@ -19,6 +20,7 @@ interface CommentEditorProps {
 const CommentEditor = ({ isOpen, setIsOpen }: CommentEditorProps) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const { user } = useAuth();
 
   const queryClient = useQueryClient();
 
@@ -50,9 +52,17 @@ const CommentEditor = ({ isOpen, setIsOpen }: CommentEditorProps) => {
       alert("Please fill in all fields");
       return;
     }
-    addPostMutate({ title, content });
-  };
+    if (!user) {
+      alert("You must be logged in to post");
+      return;
+    }
 
+    addPostMutate({
+      title,
+      content,
+      userId: user.id,
+    });
+  };
   return (
     <Dialog
       open={isOpen}

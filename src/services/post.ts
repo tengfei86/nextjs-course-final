@@ -30,8 +30,10 @@ export const getPostList = async (page: string) => {
     .order('created_at', { ascending: false });
 
   if (error) throw error;
-  console.log('Fetched posts:', posts);
-  return posts;
+  const totalPages = Math.ceil((await supabase.from('posts').select('*', { count: 'exact' })).count! / limit);
+  console.log("Fetched posts:", posts);
+  console.log("Total pages:", totalPages); 
+  return { posts, totalPages: totalPages,page: pageNumber,limit: limit };
 };
 
 
@@ -40,11 +42,11 @@ export const addPost = async (data: { title: string; content: string }) => {
   const { data: post, error } = await supabase
     .from('posts')
     .insert([{ title: data.title, content: data.content }])
-    .select()
+    .select('*')
     .single();
 
   if (error) throw error;
-  return post;
+  return post.id;
 };
 
 
